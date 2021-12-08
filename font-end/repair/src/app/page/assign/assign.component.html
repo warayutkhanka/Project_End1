@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="showrequest form-group col-12">
+        <div class="card mt-3 p-2" *ngFor="let item of getrequest">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto">
+                        <label> ชื่อผู้แจ้ง: &nbsp;</label><span>{{item.fullname}}</span>
+                    </div>
+                    <div class="col-auto">
+                        <label> อุปกรณ์: &nbsp;</label><span>{{item.equipment_name}}</span>
+                    </div>
+                    <div class="col-auto">
+                        <label> วันที่แจ้ง: &nbsp;</label><span>{{item.request_date | date:'dd/MM/YYYY'}}</span>
+                    </div>
+                </div>
+                <div class="row" id="button">
+                    <button type="button" class="btn btn-info" (click)="openmodal(item)">มอบหมาย</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="assign" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">มอบหมายงานแจ้งซ่อม</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form form-horizontal" [formGroup]="editform">
+                    <div class="form-group">
+                        <label>รหัสแจ้งซ่อม</label>
+                        <input type="text" class="form-control" name="requestID" id="request_id"
+                            formControlName="request_id">
+                    </div>
+                    <div class="form-group">
+                        <label>เลือกช่างซ่อม <strong>(หลัก)</strong></label>
+                        <select class="form-control" name="userID" id="user_id" formControlName="user_id">
+                            <option *ngFor="let item of getusertype" [ngValue]="item.user_id">
+                                {{item.f_name + item.s_name}}&nbsp;&nbsp;&nbsp; {{item.user_typename}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>ที่อยู่อุปกรณ์ที่ชำรุด</label>
+                        <textarea class="form-control" name="requestaddress" id="request_address"
+                            formControlName="request_address"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>รายละเอียด</label>
+                        <textarea class="form-control" name="requestdetails" id="request_details"
+                            formControlName="request_details"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <img src="{{request.request_images}}" class="img-thumbnail" alt="image_request" name="images"
+                            id="request_images" formControlName="request_images">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="assign_work()">มอบหมาย</button>
+                <button type="button" class="btn btn-secondary" (click)="closemodal()">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,128 @@
+<div class="container-fluid">
+    <div class="showrequest form-group col-12">
+        <table class="table">
+            <thead class="thead-inverse bg-success">
+                <tr>
+                    <!-- <th class="col-auto">ลำดับ</th> -->
+                    <th class="col-auto">ชื่อผู้แจ้ง</th>
+                    <th class="col-auto">อุปกรณ์</th>
+                    <th class="col-auto">ที่อยู่อุปกรณ์ที่ชำรุด</th>
+                    <th class="col-auto">รายละเอียด</th>
+                    <th class="col-auto">สถานะ</th>
+                    <th class="col-auto">วันที่แจ้ง</th>
+                    <th style="text-align: center;" class="bg-warning">แก้ไข</th>
+                    <th style="text-align: center;" class="bg-danger">ลบ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of getrequest">
+                    <!-- <td class="text-center">{{item.request_id}}</td> -->
+                    <td>{{item.fullname}}</td>
+                    <td class="text-left">{{item.equipment_name}}</td>
+                    <td>{{item.request_address}}</td>
+                    <td>{{item.request_details}}</td>
+                    <td class="text-center">{{item.status_name}}</td>
+                    <td class="text-center">{{item.request_date | date:'dd/MM/YYYY'}}</td>
+                    <td class="text-center"><a (click)="openfromedit(item)"><i class="fas fa-user-edit"></i></a></td>
+                    <td class="text-center"><a (click)="deleterequest(item.request_id)"><i
+                                class="fas fa-user-minus"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- update request -->
+<div class="modal fade" id="modal-edit-request" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">แก้ไขรายการแจ้งซ่อม</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form form-horizontal" [formGroup]="editform">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-2">
+                                <label>รหัสแจ้งซ่อม</label>
+                                <div class="form-group">
+                                    <input style="width: 7rem;" type="text" class="form-control text-center"
+                                        name="requestid" id="request_id" formControlName="request_id">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label>ชื่อผู้แจ้ง</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control text-center" name="fullname" id="fullname"
+                                        formControlName="fullname">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <label>รหัสอุปกรณ์</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control text-center" name="equipmentid"
+                                        id="equipment_id" formControlName="equipment_id">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>ที่อยู่อุปกรณ์ที่ชำรุด</label>
+                                    <textarea class="form-control" name="requestaddress" id="request_address" rows="3"
+                                        formControlName="request_address"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>รายละเอียด</label>
+                                    <textarea class="form-control" name="requestdetails" id="request_details" rows="3"
+                                        formControlName="request_details"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>วันที่แจ้ง</label>
+                                    <input type="datetime-local" class="form-control" name="requestdate"
+                                        id="request_date" formControlName="request_date">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>สถานะ</label>
+                                    <div class="form-group">
+                                        <select class="form-control" name="Status" id="status_id"
+                                            formControlName="status_id">
+                                            <option *ngFor="let item of status" [ngValue]="item.status_id">
+                                                {{item.status_name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="{{data.request_images}}" class="img-thumbnail" alt="image_request"
+                                    name="images" id="request_images" formControlName="request_images">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-warning" (click)="edit_request()"
+                    data-dismiss="modal">แก้ไข</button>
+                <button type="submit" class="btn btn-secondary" (click)="closemodal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

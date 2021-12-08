@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="header">
+    <img src="../../../assets/logo/logo.png" alt="LogoHeader">
+  </div>
+  <div class="container1 bg-info ">
+    <form>
+      <div class="form-group">
+        <input type="text" name="user" class="form-control form-control-xl" [(ngModel)]="user.username"
+          placeholder="Username" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <input type="password" name="pass" class="form-control form-control-xl" [(ngModel)]="user.password"
+          placeholder="Password" autocomplete="off">
+      </div>
+      <div class="buttonlogin">
+        <button type="submit" class="btn btn-success" (click)="login()">เข้าสู่ระบบ</button>
+      </div>
+      <div class="buttonregister">
+        <button type="button" class="btn btn-primary" routerLink="/register">สมัครสมาชิก</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+@media only screen and(max-width:600px) {
+  .container {
+    width: 100%;
+    .header {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      padding: 1rem;
+
+      img {
+        width: 100vw;
+        padding: 1rem;
+      }
+    }
+    .container1 {
+      height: 25rem;
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+      border-radius: 1.5rem;
+      padding: 1.2rem;
+
+      input {
+        font-size: 1.3em;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        border-radius: 1.3em;
+        padding: 1rem;
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .buttonlogin {
+        display: flex;
+        justify-content: center;
+        button {
+          font-size: 1.3rem;
+          box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+          border-radius: 2rem;
+          width: 8rem;
+          padding: 1rem;
+        }
+      }
+
+      .buttonregister {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        button {
+          font-size: 1.3rem;
+          box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+          border-radius: 2rem;
+          width: 11rem;
+          padding: 1rem;
+        }
+      }
+    }
+  }
+}
+@media only screen and(min-width:600px) {
+  .container {
+    width: 60%;
+    height: auto;
+    // border: 1px solid red;
+    margin: 0 auto;
+
+    .header {
+      margin: 0 auto;
+      // border: 1px solid yellow;
+      width: 70%;
+      padding: 1rem;
+
+      img {
+        width: 100%;
+        padding: 1rem;
+        // border: 1px solid green;
+      }
+    }
+    .container1 {
+      margin: 0 auto;
+      width: 80%;
+      height: auto;
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+      border-radius: 1.5rem;
+      padding: 1.2rem;
+
+      input {
+        width: 80%;
+        margin: 0 auto;
+        font-size: 1rem;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        border-radius: 1.5rem;
+        padding: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .buttonlogin {
+        display: flex;
+        justify-content: center;
+        button {
+          font-size: 1.3rem;
+          box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+          border-radius: 2rem;
+          width: auto;
+          padding: 0.5rem;
+        }
+      }
+
+      .buttonregister {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        button {
+          font-size: 1.3rem;
+          box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+          border-radius: 2rem;
+          width: auto;
+          padding: 0.5rem;
+        }
+      }
+    }
+  }
+}

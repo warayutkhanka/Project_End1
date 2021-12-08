@@ -1,0 +1,106 @@
+<div class="header">
+    <div class="row">
+        <div class="col-12">
+            <a routerLink="/HomeTechnician"><i id="back" class="fa fa-angle-left ml-3 mt-3" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid p-3">
+    <div class="container">
+
+        <div *ngFor="let item of assign_data" class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto">
+                        <label>รหัสมอบหมาย : </label>
+                        <span>{{item.assign_id}}</span>
+                    </div>
+                    <div class="col-auto">
+                        <label>รหัสแจ้งซ่อม : </label>
+                        <span>{{item.request_id}}</span>
+                    </div>
+                    <div class="col-auto">
+                        <label>วันที่มอบหมาย : </label>
+                        <span>{{item.assign_date | date:'dd/MM/YYYY'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a name="" id="" class="btn btn-primary" role="button"
+                            (click)="openModal(item)">ดูรายละเอียด</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="getassign" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">มอบหมายงาน</h5>
+                <button type="button" class="close" (click)="closemodal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form form-horizontal" [formGroup]="editform">
+
+                    <div class="row">
+                        <div class="col-4">
+                            <label class="mt-1">รหัสมอบหมาย :</label>
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+                                <input style="width: 5rem;" type="text" class="form-control text-center"
+                                    name="assign_id" id="assign_id" formControlName="assign_id">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="mt-1">รหัสแจ้งซ่อม :</label>
+                            </div>
+                            <div class="col-8">
+                                <input style="width: 5rem;" type="text" class="form-control text-center"
+                                    name="requestID" id="request_id" formControlName="request_id">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <label class="mt-1">รายละเอียดการแจ้งซ่อม :</label>
+                                <textarea class="form-control" name="request_Details" id="request_details"
+                                    formControlName="request_details" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <label class="mt-1">ที่อยู่อุปกรณ์ :</label>
+                                <textarea class="form-control" name="request_Address" id="request_address"
+                                    formControlName="request_address" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <img src="{{this.request_img}}" alt="images">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="onclick()">รับงาน</button>
+                <button type="button" class="btn btn-secondary" (click)="closemodal()">กลับ</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="content">
+            <div class="row">
+                <div class="col-12">
+                    <a style="color: black;" name="button" id="button" class="btn btn-primary" href="/request"
+                        role="button"><i class="far fa-bell p-2"></i>แจ้งซ่อม</a>
+                </div>
+                <div class="col-12">
+                    <a style="color: black;" name="button" id="button" class="btn btn-secondary" href="/view-assign"
+                        role="button"><i class="fa fa-file mr-2" aria-hidden="true"></i>งานมอบหมาย</a>
+                </div>
+                <div class="col-12">
+                    <a name="button" id="button" class="btn btn-info" href="/repair" role="button"><i
+                            class="fa fa-cog mr-2" aria-hidden="true"></i>รายการซ่อมบำรุง</a>
+                </div>
+                <div class="col-12">
+                    <a name="button" id="button" class="btn btn-warning" href="/user-info" role="button"><i
+                            class="fas fa-user p-2"></i>ข้อมูลส่วนตัว</a>
+                </div>
+            </div>
+            <div class="row" id="logout">
+                <div class="col-12">
+                    <a style="color: black;" name="button" id="btnlogout" class="btn btn-danger" role="button"
+                        (click)="logout()"><i class="fas fa-sign-out-alt p-2"></i>ออกจากระบบ</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+.container-fluid {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.adduser {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+}
+.table {
+    border-radius: 1rem;
+    td {
+        width: auto;
+    }
+}
+#username {
+    width: 12rem;
+}
+#titlename {
+    flex-direction: column;
+    select {
+        width: 7rem;
+    }
+}

@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <div class="showrequest form-group col-12">
+        <table class="table">
+            <thead class="thead-inverse bg-success">
+                <tr>
+                    <!-- <th class="col-auto">ลำดับ</th> -->
+                    <th class="col-auto">รหัสมอบหมาย</th>
+                    <th class="col-auto">รหัสแจ้งซ่อม</th>
+                    <th class="col-auto">ชื่อช่างที่มอบหมาย</th>
+                    <th class="col-auto">วันที่มอบหมาย</th>
+                    <th class="col-auto">วันที่ช่างรับงาน</th>
+                    <th style="text-align: center;" class="bg-warning">แก้ไข</th>
+                    <th style="text-align: center;" class="bg-danger">ลบ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of assign">
+                    <td class="text-center">{{item.assign_id}}</td>
+                    <td class="text-center">{{item.request_id}}</td>
+                    <td class="text-center">{{item.title_name + '&nbsp;&nbsp;&nbsp;' + item.f_name
+                        +'&nbsp;&nbsp;&nbsp;'+ item.s_name}}</td>
+                    <td class="text-center">{{item.assign_date | date:'dd/MM/YYYY'}}</td>
+                    <td class="text-center">{{item.repair_start | date:'dd/MM/YYYY'}}</td>
+                    <td class="text-center"><a><i class="fas fa-user-edit"></i></a></td>
+                    <td class="text-center"><a><i class="fas fa-user-minus"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    Add rows here
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#exampleModal').on('show.bs.modal', event => {
+        var button = $(event.relatedTarget);
+        var modal = $(this);
+        // Use above variables to manipulate the DOM
+
+    });
+</script>

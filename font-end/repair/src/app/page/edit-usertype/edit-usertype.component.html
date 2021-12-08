@@ -1,0 +1,92 @@
+<div class="container-fluid">
+    <div class="adduser">
+        <button class="btn btn-primary" (click)="openfromadd()">เพิ่มประเภทผู้ใช้ผู้ใช้</button>
+    </div>
+
+    <div class="showusertype form-group col-12">
+        <table class="table">
+            <thead class="thead-inverse bg-success">
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>ชื่อประเภทผู้ใช้</th>
+                    <th style="text-align: center;" class="bg-warning">แก้ไข</th>
+                    <th style="text-align: center;" class="bg-danger">ลบ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of this.usertype">
+                    <td style="text-align: center;">{{item.user_typeid}}</td>
+                    <td>{{item.user_typename}}</td>
+                    <td style="text-align: center;"><a (click)="openfromedit(item)"><i class="fas fa-user-edit"></i></a>
+                    </td>
+                    <td style="text-align: center;"><a (click)="deleteusertype(item.user_typeid)"><i
+                                class="fas fa-user-minus"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- modal addusertype -->
+    <div class="modal fade" id="addusertype" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">เพิ่มประเภทผู้ใช้ผู้ใช้</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <label>ประเภทผู้ใช้</label>
+                                <input type="text" class="form-control" name="typename" id="typename"
+                                    [(ngModel)]="data.user_typename" aria-describedby="helpId">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"
+                        (click)="addusertype(data.user_typename)">เพิ่ม</button>
+                    <button type="button" class="btn btn-secondary" (click)="closemodal1()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- update usertype -->
+    <div class="modal fade" id="modal-edit-usertype" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">แก้ไขประเภทผู้ใช้ผู้ใช้</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form form-horizontal" [formGroup]="editform">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label>ประเภทผู้ใช้</label>
+                                    <input type="text" class="form-control" name="user_typename" id="user_typename"
+                                        formControlName="user_typename" [value]="data.user_typename">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="editusertype()">แก้ไข</button>
+                    <button type="button" class="btn btn-secondary" (click)="closemodal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>

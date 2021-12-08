@@ -1,0 +1,31 @@
+<div class="header">
+  <div class="row">
+    <div class="col-1">
+      <a routerLink="/HomeUser"><i id="back" class="fa fa-angle-left ml-3 mt-3" aria-hidden="true"></i></a>
+    </div>
+    <div class="col-11 text-center mt-3">
+      <h1 class="mr-4">รายงานการแจ้งซ่อม</h1>
+    </div>
+  </div>
+</div>
+<div class="container-fluid p-3">
+  <div class="container">
+    <div class="content" *ngFor="let item of data">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <label>{{item.status_name}} :</label>
+            </div>
+            <div class="col-1 text-right">
+              <label>{{item.count}}</label>
+            </div>
+            <div class="col-3">
+              <label>รายการ</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

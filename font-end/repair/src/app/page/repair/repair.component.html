@@ -1,0 +1,113 @@
+<div class="header">
+  <div class="row">
+    <div class="col-12">
+      <a routerLink="/HomeTechnician"><i id="back" class="fa fa-angle-left ml-3 mt-3" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</div>
+<div class="container-fluid p-3">
+  <div class="container">
+    <div class="card" *ngFor="let item of repair_data">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-auto">
+            <h4 class="card-title">รหัสซ่อมบำรุง : <span style="color: green;">{{item.repair_id}}</span></h4>
+            <h4 class="card-title">วันที่รับงาน : <span style="color: blue;">{{item.repair_start |
+                date:'dd/MM/YYYY'}}</span></h4>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <h4 class="card-title">ชื่ออุปกรณ์ : <span style="color:rebeccapurple;">{{item.equipment_name}}</span></h4>
+          </div>
+        </div>
+        <div class="col-12 text-center">
+          <a name="" id="" class="btn btn-primary" role="button" (click)="openmodal(item)">ดูรายละเอียด</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>ซ่อมบำรุง</h1>
+        <button type="button" class="close" (click)="closemodal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <form class="form form-horizontal" [formGroup]="editform">
+            <div class="row">
+              <div class="col-4">
+                <label>รหัสการซ่อม : </label>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <input style="width: 7rem;" type="text" class="form-control text-center" name="repair_ID"
+                    id="repair_id" formControlName="repair_id">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-7">
+                <label>รหัสการมอบหมายงาน : </label>
+              </div>
+              <div class="col-5">
+                <div class="form-group">
+                  <input style="width: 7rem;" type="text" class="form-control text-center" name="assign_ID"
+                    id="assign_id" formControlName="assign_id">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <label>รายละเอียดการซ่อม : </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <textarea class="form-control" name="Repair_Details" id="repair_details" rows="3"
+                    formControlName="repair_details">test</textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-4">
+                <label>สถานะ : </label>
+              </div>
+              <div class="col-8">
+                <div class="form-group">
+                  <select class="form-control" name="status_ID" id="status_id" formControlName="status_id">
+                    <option *ngFor="let item of status" [ngValue]="item.status_id">{{item.status_name}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="imgdetail"> <strong> เลือกรูปภาพ :</strong></label>
+                  <input type="file" name="repair_img" (change)="handleUpload($event)">
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="onclick()">บันทึก</button>
+          <button type="button" class="btn btn-secondary" (click)="closemodal()">ปิด</button>
+        </div>
+      </div>
+    </div>
+  </div>

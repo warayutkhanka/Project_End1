@@ -1,0 +1,245 @@
+<div class="container-fluid">
+  <div class="adduser">
+    <button class="btn btn-primary" (click)="openfromadd()">เพิ่มผู้ใช้</button>
+  </div>
+
+  <div class="showuser form-group col-12">
+    <table class="table rounded">
+      <thead class="thead-inverse bg-success">
+        <tr>
+          <th>ลำดับ</th>
+          <th>username</th>
+          <th style="text-align: center;">คำนำหน้า</th>
+          <th>ชื่อ-นามสกุล</th>
+          <th>อีเมล</th>
+          <th>เบอร์มือถือ</th>
+          <th style="text-align: center;" class="bg-warning">แก้ไข</th>
+          <th style="text-align: center;" class="bg-danger">ลบ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of this.user">
+          <td style="text-align: center;">{{item.user_id}}</td>
+          <td>{{item.username}}</td>
+          <td style="text-align: center;">{{item.title_name}}</td>
+          <td>{{item.f_name + ' ' + item.s_name}}</td>
+          <td> {{item.email}}</td>
+          <td>{{item.tel}}</td>
+          <td style="text-align: center;"><a (click)="openfromedit(item)"><i class="fas fa-user-edit"></i> </a></td>
+          <td style="text-align: center;"><a (click)="deleteuser(item.user_id)"> <i class="fas fa-user-minus"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- modal-updateUser -->
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="modaledituser">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"> <strong>แก้ไขข้อมูลผู้ใช้ :</strong></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="thue">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form class="form form-horizontal" [formGroup]="editform">
+            <div class="form-body">
+              <div class="row">
+                <div class="form-group col-4" id="username">
+                  <label>Username : </label>
+                  <input type="text" class="form-control" name="username" id="username" formControlName="username"
+                    [value]="data.username">
+                </div>
+                <div class="form-group col-4" id="password">
+                  <label>Password : </label>
+                  <input type="password" name="password" id="password" formControlName="password"
+                    [value]="data.password" class="form-control">
+                </div>
+              </div>
+              <div class="row m-1">
+                <div class="col-12 text-center">
+                  <span style="opacity: 0.5;">========== ข้อมูลทั่วไป ==========</span>
+                </div>
+              </div>
+
+              <div class="row m-1">
+                <div class="form-group col-3">
+                  <label>คำนำหน้า : </label>
+                  <select style="width: 7rem;" name="title" id="title_name" formControlName="title_name"
+                    [value]="data.title_name" class="form-control">
+                    <option>นาย</option>
+                    <option>นาง</option>
+                    <option>นางสาว</option>
+                  </select>
+                </div>
+                <div class="form-group col-5">
+                  <label>ชื่อ: </label>
+                  <input type="text" class="form-control" name="fname" id="f_name" formControlName="f_name"
+                    value="{{data.f_name}}">
+                </div>
+                <div class="form-group col-4">
+                  <label>นามสกุล: </label>
+                  <input type="text" class="form-control" name="sname" id="s_name" formControlName="s_name"
+                    [value]="data.s_name">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-5">
+                  <label>เพศ : </label>
+                  <div class="col-md form-group" style="zoom: 1.2;">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" name="sex" type="radio" id="sex" value="ชาย"
+                        formControlName="sex">
+                      <label class="form-check-label" for="sex1">ชาย</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" name="sex" type="radio" id="sex" value="หญิง"
+                        formControlName="sex">
+                      <label class="form-check-label" for="sex2">หญิง</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <label>ประเภทผู้ใช้</label>
+                  <select class="form-control" name="usertype" formControlName="user_typeid"
+                    placeholder="เลือกประเภทผู้ใช้">
+                    <option *ngFor="let item of usertype" [ngValue]="item.user_typeid">
+                      {{item.user_typename}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="row m-1 mt-1">
+                <div class="form-group col-12 text-center">
+                  <span style="opacity: 0.5;">========== ข้อมูลติดต่อ ==========</span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-6">
+                  <label>อีเมล: </label>
+                  <input type="email" class="form-control" name="email" id="email" formControlName="email"
+                    [value]="data.email">
+                </div>
+                <div class="form-group col-4">
+                  <label>เบอร์ติดต่อ: </label>
+                  <input type="text" class="form-control" name="tel" id="tel" formControlName="tel" [value]="data.tel">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="edituser()">แก้ไขผู้ใช้</button>
+          <button type="button" class="btn btn-secondary" (click)="closemodal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <!-- modal-addUser -->
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="modaladduser">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"> <strong>เพิ่มข้อมูลผู้ใช้ :</strong></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="thue">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form class="form form-horizontal">
+            <div class="form-body">
+              <div class="row">
+                <div class="form-group col-4" id="username">
+                  <label>Username : </label>
+                  <input type="text" class="form-control" name="username" id="username" [(ngModel)]="data.username"
+                    maxlength="50" autocomplete="off">
+                </div>
+                <div class="form-group col-4" id="password">
+                  <label>Password : </label>
+                  <input type="text" name="password" id="password" [(ngModel)]="data.password" class="form-control">
+                </div>
+              </div>
+              <div class="row m-1">
+                <div class="col-12 text-center">
+                  <span style="opacity: 0.5;">========== ข้อมูลทั่วไป ==========</span>
+                </div>
+              </div>
+
+              <div class="row m-1">
+                <div class="form-group col-3">
+                  <label>คำนำหน้า : </label>
+                  <select style="width: 7rem;" name="title" id="title" [(ngModel)]="data.titlename"
+                    class="form-control">
+                    <option>นาย</option>
+                    <option>นาง</option>
+                    <option>นางสาว</option>
+                  </select>
+                </div>
+                <div class="form-group col-5">
+                  <label>ชื่อ: </label>
+                  <input type="text" class="form-control" name="fname" id="fname" [(ngModel)]="data.fname">
+                </div>
+                <div class="form-group col-4">
+                  <label>นามสกุล: </label>
+                  <input type="text" class="form-control" name="sname" id="sname" [(ngModel)]="data.sname">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <label>เพศ : </label>
+                  <div class="col-md form-group" style="zoom: 1.2;">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" name="patient_sex" type="radio" id="patient_sex1" value="ชาย"
+                        [(ngModel)]="data.sex">
+                      <label class="form-check-label" for="patient_sex1">ชาย</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" name="patient_sex" type="radio" id="patient_sex2" value="หญิง"
+                        [(ngModel)]="data.sex">
+                      <label class="form-check-label" for="patient_sex2">หญิง</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row m-1 mt-1">
+                <div class="form-group col-12 text-center">
+                  <span style="opacity: 0.5;">========== ข้อมูลติดต่อ ==========</span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-6">
+                  <label>อีเมล: </label>
+                  <input type="email" class="form-control" name="email" id="email" [(ngModel)]="data.email">
+                </div>
+                <div class="form-group col-4">
+                  <label>เบอร์ติดต่อ: </label>
+                  <input type="text" class="form-control" name="tel" id="tel" [(ngModel)]="data.tel">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="adduser(data)">เพิ่มผู้ใช้</button>
+          <button type="button" class="btn btn-secondary" (click)="closemodal1()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

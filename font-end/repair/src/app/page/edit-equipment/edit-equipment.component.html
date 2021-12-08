@@ -1,0 +1,92 @@
+<div class="container-fluid">
+    <div class="adduser">
+        <button class="btn btn-primary" (click)="openfromadd()">เพิ่มอุปกรณ์</button>
+    </div>
+
+    <div class="showusertype form-group col-12">
+        <table class="table">
+            <thead class="thead-inverse bg-success">
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>ชื่ออุปกรณ์</th>
+                    <th style="text-align: center;" class="bg-warning">แก้ไข</th>
+                    <th style="text-align: center;" class="bg-danger">ลบ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of equipment">
+                    <td style="text-align: center;">{{item.equipment_id}}</td>
+                    <td>{{item.equipment_name}}</td>
+                    <td style="text-align: center;"><a (click)="openfromedit(item)"><i class="fas fa-user-edit"></i></a>
+                    </td>
+                    <td style="text-align: center;"><a (click)="delete_equipment(item.equipment_id)"><i
+                                class="fas fa-user-minus"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- modal addequipment-->
+    <div class="modal fade" id="addequipment" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">เพิ่มอุปกรณ์</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <label>ชื่ออุปกรณ์</label>
+                                <input type="text" class="form-control" name="quipment_name" id="quipment_name"
+                                    [(ngModel)]="data.equipment_name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"
+                        (click)="addequipment(data.equipment_name)">เพิ่ม</button>
+                    <button type="button" class="btn btn-secondary" (click)="closemodal1()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- update quipment -->
+    <div class="modal fade" id="modal-edit-equipment" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">แก้ไขชื่ออุปกรณ์</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form form-horizontal" [formGroup]="editform">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label>ชื่ออุปกรณ์</label>
+                                    <input type="text" class="form-control" name="equipment_name" id="equipment_name"
+                                        formControlName="equipment_name" [value]="data.equipment_name">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" (click)="editequipment()">แก้ไข</button>
+                    <button type="button" class="btn btn-secondary" (click)="closemodal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>

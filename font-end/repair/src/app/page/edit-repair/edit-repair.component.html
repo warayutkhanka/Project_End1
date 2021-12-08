@@ -1,0 +1,115 @@
+<div class="container-fluid">
+    <div class="showrequest form-group col-12">
+        <table class="table">
+            <thead class="thead-inverse bg-success">
+                <tr>
+                    <th class="col-auto">รหัสการซ่อม</th>
+                    <th class="col-auto">รหัสมอบหมาย</th>
+                    <th class="col-auto">วันที่ซ่อม</th>
+                    <th class="col-auto">สถานะงาน</th>
+                    <th style="text-align: center;" class="bg-warning">แก้ไข</th>
+                    <th style="text-align: center;" class="bg-danger">ลบ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of getrepair">
+                    <td class="text-center">{{item.repair_id}}</td>
+                    <td class="text-center">{{item.assign_id}}</td>
+                    <td class="text-center">{{item.repair_end | date:'dd/MM/YYYY'}}</td>
+                    <td class="text-center">{{item.status_name}}</td>
+                    <td class="text-center"><a (click)="openmodal(item)"><i class="fas fa-user-edit"></i></a></td>
+                    <td class="text-center"><a><i class="fas fa-user-minus"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="update_repair" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> รายการซ่อม</h5>
+            </div>
+            <div class="modal-body">
+                <form class="form form-horizontal" [formGroup]="editform">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-3">
+                                <label class="mt-1">รหัสการซ่อม :</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <input style="width: 3rem;" type="text" class="form-control text-center"
+                                        name="repair_ID" id="repair_id" formControlName="repair_id">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label class="mt-1">รหัสมอบหมาย :</label>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <input style="width: 3rem;" type="text" class="form-control text-center mr-4"
+                                        name="assign_ID" id="assign_id" formControlName="assign_id">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                <label class="mt-1">รายละเอียดการซ่อม :</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" name="repair_Details" id="repair_details"
+                                        formControlName="repair_details" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label for="">สถานะการซ่อม : </label>
+                                        <select class="custom-select" name="status_ID" id="status_id"
+                                            formControlName="status_id">
+                                            <option *ngFor="let item of status" [ngValue]="item.status_id">
+                                                {{item.status_name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <img style="width: 100%;" src="{{this.img}}" class="rounded mx-auto d-block"
+                                        alt="repair_imgs" name="repair_Img" id="repair_img"
+                                        formControlName="repair_img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="test()">บันทึก</button>
+                <button type="button" class="btn btn-secondary" (click)="closemodal()">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#update_repair').on('show.bs.modal', event => {
+        var button = $(event.relatedTarget);
+        var modal = $(this);
+        // Use above variables to manipulate the DOM
+
+    });
+</script>
+ิ

@@ -1,0 +1,71 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-title text-center mt-3">
+                    <h5>ข้อมูลการแจ้งซ่อมทั้งหมด</h5>
+                </div>
+                <div class="card-body">
+                    <chart class="chart" type="pie" [data]="dataChart" [options]="opt"></chart>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-title text-center mt-3">
+                    <h5>ข้อมูลการซ่อมทั้งหมด</h5>
+                </div>
+                <div class="card-body">
+                    <chart class="chart" type="pie" [data]="dataChart1" [options]="opt"></chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div style="height: 15.6em;" class="card overflow-auto">
+                <div class="card-title text-center mt-3">
+                    <h5>รายการแจ้งซ่อมล่าสุด</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row" *ngFor="let item of report_last_req">
+                        <hr>
+                        <div class="col-auto">
+                            <label>รหัสแจ้งซ่อม : {{item.request_id}}</label>
+                        </div>
+                        <div class="col-auto">
+                            <label>อุปกรณ์ : {{item.equipment_name}}</label>
+                        </div>
+                        <div class="col-auto">
+                            <label>วันที่แจ้ง : {{item.request_date | date:'dd/MM/YYYY'}}</label>
+                        </div>
+                        <div class="col-auto">
+                            <label>สถานะ : {{item.status_name}}</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-title text-center mt-3">
+                    <h5>ข้อมูลอุปกรณ์ที่มีการแจ้งซ่อมมากที่สุด</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row" *ngFor="let item of report_equipment">
+                        <div class="col-8">
+                            <label>{{item.equipment_name}} :</label>
+                        </div>
+                        <div class="col-2">
+                            <label>{{item.count}}</label>
+                        </div>
+                        <div class="col-2">
+                            <label>รายการ</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

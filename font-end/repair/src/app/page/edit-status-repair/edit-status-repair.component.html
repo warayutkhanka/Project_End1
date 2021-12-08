@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <!-- <div class="addstatus mb-3">
+        <button class="btn btn-primary mt-3" (click)="openaddstatus()">เพิ่มสถานะ</button>
+    </div> -->
+
+    <div class="container">
+        <table class="table text-center">
+            <thead class="thead-inverse bg-success">
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>สถานะ</th>
+                    <th style="text-align: center;" class="bg-warning">แก้ไข</th>
+                    <!-- <th style="text-align: center;" class="bg-danger">ลบ</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of getstatus">
+                    <td>{{item.status_id}}</td>
+                    <td>{{item.status_name}}</td>
+                    <td style="text-align: center;"><a (click)="editstatus(item)"><i class="fas fa-user-edit"></i></a>
+                    </td>
+                    <!-- <td style="text-align: center;"><a (click)="delete_status(item.status_id)"><i class="fas fa-user-minus"></i></a></td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- addstatus -->
+
+<!-- <div class="modal fade" id="addstatus" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">เพิ่มสถานะ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closemodal1()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form form-horizontal" [formGroup]="editform">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="status_Name" id="status_name"
+                            formControlName="status_name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="addstatus()">เพิ่มสถานะ</button>
+                <button type="button" class="btn btn-secondary" (click)="closemodal1()">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- update status -->
+<div class="modal fade" id="edit-status" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">แก้ไขสถานะ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closemodal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form form-horizontal" [formGroup]="editform">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="status_Name" id="status_name"
+                            formControlName="status_name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="edit_status()">แก้ไข</button>
+                <button type="button" class="btn btn-secondary" (click)="closemodal()">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div>

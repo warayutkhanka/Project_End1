@@ -1,0 +1,14 @@
+.card {
+    margin: 0 auto;
+    width: 40rem;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    background: radial-gradient(circle, rgba(254, 255, 140, 1) 0%, rgba(251, 240, 103, 1) 81%);
+}
+#button {
+    display: flex;
+    justify-content: end;
+
+    button {
+        width: 7rem;
+    }
+}

@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-12" id="header">
+        <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center" id="fullname">
+        <h3>{{this.titlename+ "&nbsp;&nbsp;"+this.f_name + "&nbsp;&nbsp;&nbsp;" + this.s_name}}</h3>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12">
+        <label style="display: flex; justify-content: start; font-size: 1.5rem;" class="ml-1"> อีเมล :</label>
+        <h4 class="ml-1">{{this.email}}</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mt-2">
+        <!-- <label style="display: flex; justify-content: start; font-size: 1.5rem;" class="ml-1"> </label> -->
+        <h4><strong>เบอร์โทร :</strong> {{this.tel}}</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center mt-1">
+        <a name="ch-pass" id="ch-pass" class="btn btn-warning" role="button" (click)="openModal()">เปลี่ยนรหัสผ่าน</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center mt-5">
+        <a name="back" id="back" class="btn btn-danger" role="button" (click)="back()">กลับ</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">เปลี่ยนรหัสผ่าน</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>รหัสผ่านเก่า</label>
+        <div class="form-group">
+          <input type="text" class="form-control" name="password1" id="password1" [(ngModel)]="data1.password1"
+            aria-describedby="helpId">
+        </div>
+        <label>รหัสผ่านใหม่</label>
+        <div class="form-group">
+          <input type="text" class="form-control" name="newpassword" id="newpassword" [(ngModel)]="data.password"
+            aria-describedby="helpId">
+        </div>
+        <label>ยืนยันรหัสผ่านใหม่</label>
+        <div class="form-group">
+          <input type="text" class="form-control" name="cf_password" id="cf_password" [(ngModel)]="data1.cf_password"
+            aria-describedby="helpId">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="changepassword()">เปลี่ยนรหัสผ่าน</button>
+          <button type="button" class="btn btn-secondary" (click)="closemodal()">กลับ</button>
+        </div>
+      </div>
+    </div>
+  </div>
