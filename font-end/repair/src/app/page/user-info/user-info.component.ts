@@ -112,13 +112,13 @@ export class UserInfoComponent implements OnInit {
     this.openModal();
   }
 
-  check_password(){
+  check_password() {
     // console.log(this.data_user.password)
-    if(this.data1.password1 == this.data_user[0].password){
-      Swal.fire('',"รหัสผ่านถูกต้อง",'success')
+    if (this.data1.password1 == this.data_user[0].password) {
+      Swal.fire('', "รหัสผ่านถูกต้อง", 'success')
     }
-    else{
-      Swal.fire('',"รหัสผ่านไม่ตรงกัน",'error')
+    else {
+      Swal.fire('', "รหัสผ่านไม่ตรงกัน", 'error')
     }
   }
 
