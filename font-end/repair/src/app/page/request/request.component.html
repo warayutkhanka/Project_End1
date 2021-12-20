@@ -1,5 +1,12 @@
 <div class="header">
-  <span>แจ้งซ่อม</span>
+  <div class="row">
+    <div class="col-2">
+      <a (click)="back()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+    </div>
+    <div class="col-10">
+      <span>แจ้งซ่อม</span>
+    </div>
+  </div>  
 </div>
 <div class="container">
 
@@ -43,7 +50,6 @@
         </div>
         <div class="button">
           <button type="submit" class="btn btn-primary" (click)="request()">แจ้งซ่อม</button>
-          <button type="submit" class="btn btn-danger" (click)="back()">กลับ</button>
         </div>
       </form>
     </div>

@@ -77,6 +77,11 @@ export class mainService {
     return this.http.post(environment.serverUrl + `/api/addequipment`, data).toPromise();
   }
 
+  check_password(data: any) {
+    console.log(data)
+    return this.http.post(environment.serverUrl + `/api/check_password`, data).toPromise();
+  }
+
   update_equipment(data: any) {
     return this.http.put(environment.serverUrl + `/api/update_equipment`, data).toPromise();
   }

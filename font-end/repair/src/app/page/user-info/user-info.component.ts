@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { from } from 'rxjs';
 import { mainService } from 'src/app/service/main.service';
 import Swal from 'sweetalert2';
 declare const $: any;
@@ -25,12 +27,22 @@ export class UserInfoComponent implements OnInit {
   titlename: any = localStorage.getItem('title_name');
   usertype: any = localStorage.getItem('dataUserstatus');
 
+  data_user: any;
+
+  form = new FormGroup({
+    user_id: new FormControl(''),
+    password: new FormControl(''),
+  })
+
+
   constructor(
     private mainservice: mainService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+
+
   }
 
   back() {
@@ -69,6 +81,7 @@ export class UserInfoComponent implements OnInit {
             this.mainservice.chpassword(this.data).then((res) => {
               console.log(res);
               Swal.fire('', `เปลี่ยนรหัสผ่านสำเร็จ`, 'success');
+              localStorage.removeItem;
               location.href = '/';
             }).catch(err => {
               console.log(err)
@@ -83,36 +96,35 @@ export class UserInfoComponent implements OnInit {
     }
 
   }
-  //     if (this.data1.password1 != this.data.password) {
-  //       console.log(this.data.password);
-  //       if (this.data.password == this.data1.cf_password) {
-  //         Swal.fire({
-  //           title: 'ลบผู้ใช้',
-  //           text: ' ',
-  //           icon: 'warning',
-  //           showCancelButton: true,
-  //           confirmButtonColor: 'green',
-  //           cancelButtonColor: 'red',
-  //           confirmButtonText: 'ลบ',
-  //           cancelButtonText: 'กลับ',
-  //         }).then((result) => {
-  //           if (result.isConfirmed) {
-  //             this.mainservice.chpassword(this.data).then((res) => {
-  //               console.log(res);
-  //               Swal.fire('', `ลบสำเร็จ`, 'success');
-  //               location.href = '/HomeAdmin/edit-user';
-  //             }).catch(err => {
-  //               console.log(err)
-  //             })
-  //             // console.log(this.data)
-  //           } else {
-  //             Swal.fire('', `รหัสผ่านใหม่ไม่ตรงกัน`, "error");
-  //           }
-  //         } else {
-  //           Swal.fire('', `กรุณากรอกรหัสผ่านที่ไม่ซ้ำกัน`, "error");
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+
+  show_password() {
+    this.form.controls['user_id'].setValue(this.user_id);
+    this.mainservice.check_password(this.form.value).then((res) => {
+      this.data_user = res
+      console.log(this.data_user)
+    }).catch((err => {
+      console.log(err)
+    }))
+  }
+
+  click() {
+    this.show_password();
+    this.openModal();
+  }
+
+  check_password(){
+    // console.log(this.data_user.password)
+    if(this.data1.password1 == this.data_user[0].password){
+      Swal.fire('',"รหัสผ่านถูกต้อง",'success')
+    }
+    else{
+      Swal.fire('',"รหัสผ่านไม่ตรงกัน",'error')
+    }
+  }
+
+
+
 }
+
+
+

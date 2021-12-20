@@ -384,6 +384,17 @@ app.post('/api/add_status', async (req, res) => {
     }
 });
 
+app.post('/api/check_password', async (req, res) => {
+    // console.log(req)
+    try {
+        var body = req.body;
+        var check_password = await md_user.check_password(body);
+        res.send(check_password);
+    } catch (err) {
+        res.status(500).send(err.toString());
+    }
+});
+
 app.put('/api/update_status', async (req, res) => {
     try {
         let update_status = await md_repair.update_status(req.body);

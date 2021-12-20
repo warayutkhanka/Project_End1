@@ -92,6 +92,14 @@ async function getusertype() {
     return result;
 }
 
+async function check_password(data) {
+    console.log('user==>',data)
+    const db = await DB;
+    let sql = `SELECT * FROM user WHERE user.user_id = ${data.user_id}`;
+    const result = await db.query(sql);
+    console.log(result)
+    return result;
+}
 
 
 module.exports = {
@@ -106,4 +114,5 @@ module.exports = {
     deleteusertype,
     changepassword,
     getusertype,
+    check_password,
 }

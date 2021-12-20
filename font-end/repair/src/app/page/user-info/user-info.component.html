@@ -19,13 +19,12 @@
     </div>
     <div class="row">
       <div class="col-12 mt-2">
-        <!-- <label style="display: flex; justify-content: start; font-size: 1.5rem;" class="ml-1"> </label> -->
         <h4><strong>เบอร์โทร :</strong> {{this.tel}}</h4>
       </div>
     </div>
     <div class="row">
       <div class="col-12 text-center mt-1">
-        <a name="ch-pass" id="ch-pass" class="btn btn-warning" role="button" (click)="openModal()">เปลี่ยนรหัสผ่าน</a>
+        <a name="ch-pass" id="ch-pass" class="btn btn-warning" role="button" (click)="click()">เปลี่ยนรหัสผ่าน</a>
       </div>
     </div>
     <div class="row">
@@ -48,10 +47,20 @@
       </div>
       <div class="modal-body">
         <label>รหัสผ่านเก่า</label>
-        <div class="form-group">
-          <input type="text" class="form-control" name="password1" id="password1" [(ngModel)]="data1.password1"
-            aria-describedby="helpId">
+
+        <div class="row">
+          <div class="col-8">
+            <div class="form-group">
+              <input type="text" class="form-control" name="password1" id="password1" [(ngModel)]="data1.password1"
+                aria-describedby="helpId">
+            </div>
+          </div>
+          <div class="col-4">
+            <button type="button" class="btn btn-warning" (click)="check_password()">ตรวจสอบ</button>
+          </div>
         </div>
+
+
         <label>รหัสผ่านใหม่</label>
         <div class="form-group">
           <input type="text" class="form-control" name="newpassword" id="newpassword" [(ngModel)]="data.password"
@@ -66,6 +75,6 @@
           <button type="button" class="btn btn-primary" (click)="changepassword()">เปลี่ยนรหัสผ่าน</button>
           <button type="button" class="btn btn-secondary" (click)="closemodal()">กลับ</button>
         </div>
-      </div>
     </div>
   </div>
+</div>
